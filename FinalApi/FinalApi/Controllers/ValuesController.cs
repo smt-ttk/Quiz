@@ -23,26 +23,22 @@ namespace FinalApi.Controllers
 
 
 
-
-
-
-
         [HttpPost]
         public ActionResult Index([FromBody]List<JDto> jDto)
         {
             Console.WriteLine(jDto);
 
             foreach (var item in jDto)
+
             {
                 User user = new User()
                 {
-                    id = item.id,
+                    //id = item.id,
                     firstName = item.firstName,
                     lastName = item.lastName,
                     username = item.username
                 };
-
-                var result = _repository.Find(user.id);
+                var result = _repository.FindUserName(user.username);
                 if (result == null)
                 {
                     _repository.Insert(user);
@@ -53,57 +49,26 @@ namespace FinalApi.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // GET api/values
-        [HttpPost]
-        public ActionResult<IEnumerable<string>> Get()
+       
+        [HttpGet]
+        public ActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return new JsonResult(_repository.List());
         }
 
-        // GET api/values/5
+
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
             return "value";
         }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
+       
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/values/5
+       
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

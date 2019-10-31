@@ -43,8 +43,10 @@ namespace FinalApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseAuthentication();
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());//herşeye izin verdik.
+            app.UseCors(options =>
+            options.WithOrigins("http://localhost:5000")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
             app.UseMvc();
         }
     }

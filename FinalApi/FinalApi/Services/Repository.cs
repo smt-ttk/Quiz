@@ -36,6 +36,11 @@ namespace FinalApi.Services
             return _dataContext.Users.Find(id);
         }
 
+        public User FindUserName(string username)
+        {
+            return _dataContext.Users.FirstOrDefault(x => x.username == username);
+        }
+
         public User Insert(User user)
         {
             _dataContext.Users.Add(user);
@@ -43,16 +48,16 @@ namespace FinalApi.Services
             return user;
         }
 
-        public IEnumerable<User> List()
-        {
-            return _dataContext.Users.ToList();
-        }
-
         public User Update(User user)
         {
             _dataContext.Users.Update(user);
             _dataContext.SaveChanges();
             return user;
+        }
+
+        List<User> IRepository.List()
+        {
+            return _dataContext.Users.ToList();
         }
     }
 }

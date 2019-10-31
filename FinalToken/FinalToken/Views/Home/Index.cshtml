@@ -11,10 +11,12 @@
 <br />
 <input type="button" value="Verileri Sunucuya Gönder" onclick="sendUsersToServer();" />
 <hr />
+<input type="button" value="User al" onclick="getUsers();" />
+<hr />
 <p><strong>ÖNEMLİ:</strong>JWT server projesini başlatmadan önce her iki projenin localhost portlarının farklı olduğundan emin olun.</p>
 
 <script>
-   // var users = obj;
+    // var users = obj;
     var users = new Object();
     window.Token = null;
 
@@ -56,8 +58,9 @@
     function sendUsersToServer() {
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:5003/values/Index/',
+            url: 'http://localhost:5004/api/values',
             data: JSON.stringify(users),
+            contentType: 'application/json',
             success: function (data) {
                 console.log(data);
             },
@@ -66,5 +69,20 @@
             }
         });
     }
-    
+    function getUsers() {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:5004/api/values',
+            data: {},
+            contentType: 'application/json',
+            success: function (data) {
+                users = data;
+                console.log("users", data);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    }
+
 </script>
