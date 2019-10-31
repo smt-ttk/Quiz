@@ -1,0 +1,5 @@
+﻿add-migration Initial -StartupProject "RepositoryDesignPattern.Web" -Project "RepositoryDesignPattern.Data"
+
+remove-migration -StartupProject "RepositoryDesignPattern.Web" -Project "RepositoryDesignPattern.Data"
+
+update-database -StartupProject "RepositoryDesignPattern.Web" -Project "RepositoryDesignPattern.Data"

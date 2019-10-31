@@ -1,0 +1,5 @@
+﻿add-migration Initial -StartupProject "UnitOfWorkDesignPattern.Web" -Project "UnitOfWorkDesignPattern.Data"
+
+remove-migration -StartupProject "UnitOfWorkDesignPattern.Web" -Project "UnitOfWorkDesignPattern.Data"
+
+update-database -StartupProject "UnitOfWorkDesignPattern.Web" -Project "UnitOfWorkDesignPattern.Data"
